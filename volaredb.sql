@@ -14,6 +14,16 @@ email varchar(50),
 telefono varchar(50),
 ruta varchar(50));
 
+-- Inserts para aerolinea
+INSERT INTO aerolinea (id_A, nombre_A, pais, codigoIATA)
+VALUES (1, 'Iberia', 'España', 'IB');
 
+INSERT INTO aerolinea (id_A, nombre_A, pais, codigoIATA)
+VALUES (2, 'Air Europa', 'España', 'UX');
 
+-- Inserts para cliente
+INSERT INTO cliente (id_C, nombre_C, email, telefono, ruta)
+VALUES (1, 'Asier Tartanga', 'asier@example.com', '600123456', 'Bilbao-Madrid');
 
+INSERT INTO cliente (id_C, nombre_C, email, telefono, ruta)
+VALUES (2, 'Maria Lopez', 'maria@example.com', '600654321', 'Madrid-Barcelona');
