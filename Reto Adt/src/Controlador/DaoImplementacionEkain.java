@@ -9,6 +9,7 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 
 /**
  *
@@ -22,17 +23,20 @@ public class DaoImplementacionEkain {
     
     //Sentencias SQL
     
-    final String REGISTRAR_CLIENTE = "INSERT INTO CLIENTE (id_C, nombre_C, emai, telefono, ruta) VALUES (?,?,?,?,?)";
+    final String REGISTRAR_CLIENTE = "INSERT INTO CLIENTE (id_C, nombre_C, email, telefono, ruta) VALUES (?,?,?,?,?)";
+    final String EXISTECLIEN = "SELECT id_C FROM CLIENTE WHERE id_C = ?";
 
-    private void openConnection() {
-        try {
-            con = (Connection) DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/volareDB?serverTimezone=Europe/Madrid&useSSL=false", "root",
-                    "abcd*1234");
-        } catch (SQLException e) {
-            System.out.println("Error al intentar abrir la BD");
-        }
+   private void openConnection() {
+    try {
+        con = (Connection) DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/volaredb?serverTimezone=Europe/Madrid&useSSL=false", "root",
+                "abcd*1234");
+    } catch (SQLException e) {
+        System.out.println("Error al intentar abrir la BD");
+        e.printStackTrace();
     }
+}
+    
 
     private void closeConnection() throws SQLException {
         if (stmt != null) {
@@ -66,6 +70,20 @@ public class DaoImplementacionEkain {
     }
 
     return insertado;
+}
+   
+   public boolean existeCliente(int id) throws SQLException {
+    boolean existe = false;
+    openConnection();
+    try {
+        stmt = (PreparedStatement) con.prepareStatement(EXISTECLIEN);
+        stmt.setInt(1, id);
+        ResultSet rs = stmt.executeQuery();
+        existe = rs.next();
+    } finally {
+        closeConnection();
+    }
+    return existe;
 }
 
 }

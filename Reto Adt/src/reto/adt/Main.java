@@ -4,7 +4,12 @@
  */
 package reto.adt;
 
+import Controlador.DaoImplementacionEkain;
+import Exceptions.IdDuplicadoException;
+import Exceptions.IdInvalidoException;
+import Modelo.Cliente;
 import Util.Util;
+import java.sql.SQLException;
 
 /**
  *
@@ -46,7 +51,7 @@ public class Main {
                 // reservarVuelo();
                 break;
             case 5:
-                // consultarVuelosFuturos();
+                 consultarVuelosFuturos();
                 break;
             case 6:
                 // consultarVuelosDeCliente();
@@ -63,10 +68,63 @@ public class Main {
 
     } while (opcion != 0);
 }
+    
+    
+    private static int pedirIdValido(DaoImplementacionEkain dao) {
+    int id = -1;
+    boolean idOk = false;
+
+    do {
+        try {
+            id = Util.leerInt("Introduce el id del cliente: ");
+
+            if (id < 0) {
+                throw new IdInvalidoException("El id no puede ser negativo.");
+            }
+
+            if (dao.existeCliente(id)) {
+                throw new IdDuplicadoException("Ya existe un cliente con ese id.");
+            }
+
+            idOk = true;
+
+        } catch (IdInvalidoException | IdDuplicadoException e) {
+            System.out.println(e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("Error al comprobar el id: " + e.getMessage());
+        }
+    } while (!idOk);
+
+    return id;
+}
 
     private static void registrarCliente() {
-        int id = Util.leerInt("Introduce el id del cliente");
+         DaoImplementacionEkain dao = new DaoImplementacionEkain();
+         
+        
+        int id = pedirIdValido(dao);
         String nombre = Util.introducirCadena("Introduce el nombre: ");
+        String email = Util.validarEmail("Introduce el email: ");
+        String tlf = Util.introducirCadena("Introduce el numero de telefono: ");
+        
+        Cliente cliente = new Cliente(id, nombre, email, tlf);
+        
+       
+        
+         try {
+        boolean insertado = dao.registrarCliente(cliente);
+        if (insertado) {
+            System.out.println("Cliente registrado correctamente.");
+        } else {
+            System.out.println("No se pudo registrar el cliente.");
+        }
+    } catch (SQLException e) {
+        System.out.println("Error al registrar el cliente: " + e.getMessage());
+    }
+        
+    }
+
+    private static void consultarVuelosFuturos() {
         
     }
     }

@@ -1,5 +1,5 @@
 package Util;
-
+import Exceptions.ValidarEmailException;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+
 
 //import exception.ValidarDniException;
 //import exception.ValidarEmailException;
@@ -43,7 +44,7 @@ public class Util {
 				ok = true;
 				n = Float.parseFloat(introducirCadena(message));
 			} catch (NumberFormatException e) {
-				System.out.println("te equivocaste wey, intentalo otra vez: ");
+				System.out.println("te equivocaste, intentalo otra vez: ");
 				ok = false;
 			}
 		} while (!ok);
@@ -256,7 +257,7 @@ public class Util {
 		return cont;
 	}
 
-	/*public static String validarEmail(String mensaje) {
+	public static String validarEmail(String mensaje) {
 		String PATRON_EMAIL = "^[\\w._%+-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$";
 		String email = null;
 		boolean error = true;
@@ -276,7 +277,7 @@ public class Util {
 		return email;
 	}
 
-	public static String validarDni(String mensaje) throws ValidarDniException {
+	/*public static String validarDni(String mensaje) throws ValidarDniException {
 		String dni, numeroStr;
 		char letra, letraCalculada;
 		int numero;

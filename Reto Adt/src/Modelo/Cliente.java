@@ -16,6 +16,13 @@ public class Cliente {
     private String tlf;
     private String ruta;
 
+    public Cliente(int id_C, String nombre_V, String mail, String tlf) {
+        this.id_C = id_C;
+        this.nombre_V = nombre_V;
+        this.mail = mail;
+        this.tlf = tlf;
+    }
+
     public int getId_C() {
         return id_C;
     }
