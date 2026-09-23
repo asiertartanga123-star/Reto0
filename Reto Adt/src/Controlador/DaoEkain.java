@@ -4,10 +4,14 @@
  */
 package Controlador;
 
+import Modelo.Cliente;
+
 /**
  *
  * @author Asier.Prieto
  */
-public interface Dao {
+public interface DaoEkain {
+    
+    public boolean RegistrarCLiente(Cliente clien);
     
 }
