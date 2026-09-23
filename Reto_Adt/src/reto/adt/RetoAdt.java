@@ -91,13 +91,13 @@ public class RetoAdt {
     }
 
     private static void consultarVuelosDeUsuario() throws Exception {
-        System.out.println("--- Consultar vuelos de un cliente ---");
         int idCliente = Util.leerInt("Id del cliente: ");
-
         Cliente cliente = new Cliente(idCliente, "", "", "", "");
+
         DaoImplementacionAsier dao = new DaoImplementacionAsier();
         dao.consultarvuelos(cliente);
     }
+
     private static void historialCliente() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
