@@ -138,8 +138,45 @@ public class Main {
     }
 
     private static void consultarVuelosFuturos() {
-        
+    File fichVuelo = new File("vuelos.dat");
+
+    if (!fichVuelo.exists()) {
+        System.out.println("No hay vuelos registrados.");
+        return;
     }
+
+    ObjectInputStream ois = null;
+    boolean hayFuturos = false;
+
+    try {
+        ois = new ObjectInputStream(new FileInputStream(fichVuelo));
+        while (true) {
+            Vuelo v = (Vuelo) ois.readObject();
+            if (v.getFechaSalida().isAfter(LocalDate.now())) {
+                System.out.println(v);
+                hayFuturos = true;
+            }
+        }
+    } catch (EOFException e) {
+        // fin del fichero, no es un error
+    } catch (IOException e) {
+        e.printStackTrace();
+    } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+    } finally {
+        try {
+            if (ois != null) {
+                ois.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    if (!hayFuturos) {
+        System.out.println("No hay vuelos futuros.");
+    }
+}
 
     private static void registrarVuelo(File fichVuelo) {
 
