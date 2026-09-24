@@ -7,9 +7,21 @@ package reto.adt;
 import Controlador.DaoImplementacionEkain;
 import Exceptions.IdDuplicadoException;
 import Exceptions.IdInvalidoException;
+import Modelo.Clase;
 import Modelo.Cliente;
+import Modelo.Vuelo;
+import Util.AñadirObjetoSinCabecera;
 import Util.Util;
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 /**
  *
@@ -21,6 +33,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+         File fichVuelo = new File("vuelos.dat");
 
     int opcion;
 
@@ -45,7 +58,7 @@ public class Main {
                 registrarCliente();
                 break;
             case 3:
-                // registrarVuelo();
+                registrarVuelo(fichVuelo);
                 break;
             case 4:
                 // reservarVuelo();
@@ -126,6 +139,101 @@ public class Main {
 
     private static void consultarVuelosFuturos() {
         
+    }
+
+    private static void registrarVuelo(File fichVuelo) {
+
+        int id;
+
+        ObjectOutputStream oos = null;
+
+        Vuelo v;
+        int mas;
+        try {
+            if (fichVuelo.exists()) {
+                oos = new AñadirObjetoSinCabecera(new FileOutputStream(fichVuelo, true));
+            } else {
+                oos = new ObjectOutputStream(new FileOutputStream(fichVuelo));
+            }
+            do {
+
+                id = Util.leerInt("Introduce el id del vuelo");
+
+                v = obtenerVuelo(fichVuelo, id);
+                if (v != null) {
+                    System.out.println("Ya existe un vuelo con ese id");
+                } else {
+
+                    System.out.println("AÑADIENDO VUELO NUEVO");
+                    String origen = Util.introducirCadena("El origen del vuelo");
+                    String destino = Util.introducirCadena("El destino del vuelo");
+                    LocalDate fechSalida = Util.pidoFechaDMA("La fecha de salida del vuelo");
+                    int num_plaza = Util.leerInt("Introduce el número de plazas del vuelo");
+                    Clase clas = null;
+                    while (clas == null) {
+                        for (Clase c : Clase.values()) {
+                            System.out.print(c + " - ");
+                        }
+                        String post = Util.introducirCadena("Introduce la clase que tendrá el vuelo");
+                        for (Clase c : Clase.values()) {
+                            if (c.name().equals(post)) {
+                                clas = c;
+                                break;
+                            }
+                        }
+
+                    }
+                    v = new Vuelo(id, origen, destino, fechSalida, num_plaza, clas);
+                    //v.setDatos(id,clas);
+                    oos.writeObject(v);
+
+                }
+
+                mas = Util.leerInt("Quieres añadir un vuelo mas? (1=Si/2=No)");
+
+            } while (mas == 1);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                oos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+    
+     private static Vuelo obtenerVuelo(File fichVuelo, int id) {
+        ObjectInputStream ois = null;
+        Vuelo vue;
+        try {
+            ois = new ObjectInputStream(new FileInputStream(fichVuelo));
+            while (true) {
+                vue = (Vuelo) ois.readObject();
+                if (vue.getId() == id) {
+                    return vue;
+                }
+            }
+        } catch (EOFException e) {
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                ois.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
     }
     }
     

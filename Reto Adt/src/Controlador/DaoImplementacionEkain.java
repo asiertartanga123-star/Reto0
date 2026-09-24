@@ -5,11 +5,23 @@
 package Controlador;
 
 import Modelo.Cliente;
+import Modelo.Vuelo;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -86,5 +98,28 @@ public class DaoImplementacionEkain {
     return existe;
 }
 
-}
+      
+    public void consultarvuelos(Cliente cliente) throws Exception {
+        boolean encontrado = false;
+
+        try (ObjectInputStream entrada = new ObjectInputStream(
+                new FileInputStream("vuelos.dat"))) {
+            while (true) {
+                Vuelo vuelo = (Vuelo) entrada.readObject();
+                if (vuelo.getId_c == cliente.getId_C()) {
+                    System.out.println(vuelo);
+                    encontrado = true;
+                }
+            }   
+        } catch (EOFException e) {
+            // Fin normal del fichero.
+        } catch (FileNotFoundException e) {
+            System.out.println("No existe el fichero vuelos.dat");
+            return;
+        }
+
+        if (!encontrado) {
+            System.out.println("El cliente no tiene vuelos registrados.");
+        }
+}}
 

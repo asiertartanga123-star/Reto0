@@ -6,9 +6,12 @@
             <file>file:/C:/Users/Ekain.Bedoya/Desktop/Retoadt/Reto%20Adt/src/Controlador/DaoEkain.java</file>
             <file>file:/C:/Users/Ekain.Bedoya/Desktop/Retoadt/Reto%20Adt/src/Modelo/Aerolinea.java</file>
             <file>file:/C:/Users/Ekain.Bedoya/Desktop/Retoadt/Reto%20Adt/src/reto/adt/Main.java</file>
-            <file>file:/C:/Users/Ekain.Bedoya/Desktop/Retoadt/Reto%20Adt/src/Controlador/DaoImplementacionEkain.java</file>
-            <file>file:/C:/Users/Ekain.Bedoya/Desktop/Retoadt/Reto%20Adt/src/Modelo/Cliente.java</file>
             <file>file:/C:/Users/Ekain.Bedoya/Desktop/Retoadt/Reto%20Adt/src/Util/Util.java</file>
+            <file>file:/C:/Users/Ekain.Bedoya/Desktop/Retoadt/Reto%20Adt/src/Modelo/Cliente.java</file>
+            <file>file:/C:/Users/Ekain.Bedoya/Desktop/Retoadt/Reto%20Adt/src/Controlador/DaoImplementacionEkain.java</file>
+            <file>file:/C:/Users/Ekain.Bedoya/Desktop/Retoadt/Reto%20Adt/src/Exceptions/ValidarEmailException.java</file>
+            <file>file:/C:/Users/Ekain.Bedoya/Desktop/Retoadt/Reto%20Adt/src/Exceptions/IdInvalidoException.java</file>
+            <file>file:/C:/Users/Ekain.Bedoya/Desktop/Retoadt/Reto%20Adt/src/Exceptions/IdDuplicadoException.java</file>
         </group>
     </open-files>
 </project-private>

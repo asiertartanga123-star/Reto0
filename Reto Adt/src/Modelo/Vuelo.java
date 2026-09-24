@@ -4,13 +4,14 @@
  */
 package Modelo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  *
  * @author Asier.Prieto
  */
-public class Vuelo {
+public class Vuelo implements Serializable{
     
     private int id;
     private String origen;
@@ -18,6 +19,7 @@ public class Vuelo {
     private LocalDate fechaSalida;
     private int num_plazas;
     private Clase clase;
+    public int getId_c;
 
     public Vuelo(int id, String origen, String destino, LocalDate fechaSalida, int num_plazas, Clase clase) {
         this.id = id;
