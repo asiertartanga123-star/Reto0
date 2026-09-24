@@ -4,13 +4,15 @@
  */
 package Modelo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  *
  * @author Asier.Prieto
  */
-public class Vuelo {
+public class Vuelo implements Serializable{
+    private static final long serialVersionUID = 1L;
     
     private int id;
     private String origen;
@@ -81,5 +83,17 @@ public class Vuelo {
         return "Vuelo{" + "id=" + id + ", origen=" + origen + ", destino=" + destino + ", fechaSalida=" + fechaSalida + ", num_plazas=" + num_plazas + ", clase=" + clase + '}';
     }
     
+    
+    
+    /*
+    public void setDatos(int id,Clase c) {
+		this.id = id;
+		this.origen = Util.introducirCadena("Nombre: ");
+		this.destino = Util.introducirCadena("Apellido: ");
+		this.fechaSalida = Util.pidoFechaDMA("Fecha de salida: ");
+		this.num_plazas = Util.leerInt("Número de plazas: ");
+		this.clase = c;
+	}
+*/
     
 }
