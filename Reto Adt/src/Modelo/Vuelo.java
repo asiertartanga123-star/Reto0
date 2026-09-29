@@ -12,6 +12,8 @@ import java.time.LocalDate;
  * @author Asier.Prieto
  */
 public class Vuelo implements Serializable {
+
+    private static final long serialVersionUID = -1381670417836086862L;
     
     private int id;
     private int id_C;
@@ -21,13 +23,12 @@ public class Vuelo implements Serializable {
     private int num_plazas;
     private Clase clase;
 
-    public Vuelo(int id, int id_C, String origen, String destino, LocalDate fechaSalida, int num_plazas, Clase clase) {
+    public Vuelo(int id, String origen, String destino, LocalDate fechaSalida, int id_C, Clase clase) {
         this.id = id;
         this.id_C = id_C;
         this.origen = origen;
         this.destino = destino;
         this.fechaSalida = fechaSalida;
-        this.num_plazas = num_plazas;
         this.clase = clase;
     }
 
