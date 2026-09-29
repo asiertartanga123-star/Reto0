@@ -1,10 +1,15 @@
 package Util;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import exception.ValidarDniException;
 import exception.ValidarEmailException;
 =======
 import Exceptions.ValidarEmailException;
 >>>>>>> Ekain
+=======
+import Exception.ValidarDniException;
+import Exception.ValidarEmailException;
+>>>>>>> Ricardo
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -283,10 +288,14 @@ public class Util {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public static String validarDni(String mensaje) throws ValidarDniException {
 =======
 	/*public static String validarDni(String mensaje) throws ValidarDniException {
 >>>>>>> Ekain
+=======
+	public static String validarDni(String mensaje) throws ValidarDniException {
+>>>>>>> Ricardo
 		String dni, numeroStr;
 		char letra, letraCalculada;
 		int numero;
@@ -315,8 +324,12 @@ public class Util {
 		int indice = numero % 23;
 		return letras[indice];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 =======
 	}*/
 >>>>>>> Ekain
+=======
+	}
+>>>>>>> Ricardo
 }

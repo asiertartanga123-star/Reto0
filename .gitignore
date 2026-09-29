@@ -1,6 +1,7 @@
 /target/
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 *.sql
 =======
 /Reto Adt/build/
@@ -9,3 +10,7 @@
 =======
 /Reto Adt/build/
 >>>>>>> Ekain
+=======
+/Reto Adt/build/
+/Reto Adt/dist/
+>>>>>>> Ricardo

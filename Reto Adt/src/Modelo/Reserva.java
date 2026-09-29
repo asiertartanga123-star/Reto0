@@ -4,13 +4,22 @@
  */
 package Modelo;
 
+<<<<<<< HEAD
 import java.io.Serializable;
+=======
+
+>>>>>>> Ricardo
 
 /**
  *
  * @author Asier.Prieto
  */
+<<<<<<< HEAD
 public class Reserva implements Serializable {
+=======
+public class Reserva  {
+   
+>>>>>>> Ricardo
     private int id_C;
     private int id_V;
 

@@ -17,4 +17,7 @@ public class AñadirObjetoSinCabecera extends ObjectOutputStream{
 	}
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> Ricardo

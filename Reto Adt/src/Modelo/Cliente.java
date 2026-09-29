@@ -27,7 +27,10 @@ public class Cliente {
         this.mail = mail;
         this.tlf = tlf;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> Ricardo
     public int getId_C() {
         return id_C;
     }
