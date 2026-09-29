@@ -53,7 +53,7 @@ public class RetoAdt {
             case 4: reservarVuelo(); break;
             case 5: consultarVuelosFuturos(); break;
             case 6: consultarVuelosDeUsuario(); break;
-            case 7: historialCliente(); break;
+            case 7: historialVuelos(); break;
             case 0: break;
             default: System.out.println("Opción no válida");
         }
@@ -98,7 +98,7 @@ public class RetoAdt {
         DaoImplementacionAsier dao = new DaoImplementacionAsier();
         dao.consultarvuelos(cliente);
     }
-    private static void historialCliente() {
+    private static void historialVuelos() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

@@ -14,6 +14,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.ObjectInputStream;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 /**
  *
@@ -29,19 +30,16 @@ public class DaoImplementacionAsier implements DaoAsier{
 	private Connection con;
 	private PreparedStatement stmt;
         
-        private void openConnection() {
-		try {
-			con = (Connection) DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/volareDB?serverTimezone=Europe/Madrid&useSSL=false", "root",
-					"abcd*1234");
-		} catch (SQLException e) {
-			System.out.println("Error al intentar abrir la BD");
-		}
+        private void openConnection() throws SQLException {
+        con = (Connection) DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/volaredb?serverTimezone=Europe/Madrid&useSSL=false", "root",
+                "abcd*1234");
 	}
         
         // Sentencias
         
         String REGISTRAR_AEROLINEA = "INSERT INTO aerolinea (id_A, nombre_A, pais, codigoIATA) VALUES (?, ?, ?, ?)";
+        String OBTENER_RUTA_CLIENTE = "SELECT ruta FROM cliente WHERE id_C = ?";
         
         private void closeConnection() throws SQLException {
 		if (stmt != null) {
@@ -65,6 +63,22 @@ public class DaoImplementacionAsier implements DaoAsier{
 
     @Override
     public void consultarvuelos(Cliente cliente) throws Exception {
+        openConnection();
+        try {
+            stmt = (PreparedStatement) con.prepareStatement(OBTENER_RUTA_CLIENTE);
+            stmt.setInt(1, cliente.getId_C());
+            try (ResultSet resultado = stmt.executeQuery()) {
+                if (!resultado.next()) {
+                    throw new SQLException("No existe el cliente con id " + cliente.getId_C());
+                }
+                cliente.setRuta(resultado.getString("ruta"));
+            }
+        } finally {
+            closeConnection();
+        }
+
+        cliente.abrirImagen();
+
         boolean encontrado = false;
 
         try (ObjectInputStream entrada = new ObjectInputStream(
