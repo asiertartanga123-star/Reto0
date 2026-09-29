@@ -38,16 +38,26 @@ public class DaoImplementacionAsier implements DaoAsier{
 	private Connection con;
 	private PreparedStatement stmt;
         
+<<<<<<< HEAD
         private void openConnection() throws SQLException {
             con = (Connection) DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/volareDB?serverTimezone=Europe/Madrid&useSSL=false", "root",
                     "abcd*1234");
+=======
+        private void openConnection() {
+		try {
+			con = (Connection) DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/volareDB?serverTimezone=Europe/Madrid&useSSL=false", "root",
+					"abcd*1234");
+		} catch (SQLException e) {
+			System.out.println("Error al intentar abrir la BD");
+		}
+>>>>>>> d924dc61e89e8a722a529835786fff56aa246986
 	}
         
         // Sentencias
         
         String REGISTRAR_AEROLINEA = "INSERT INTO aerolinea (id_A, nombre_A, pais, codigoIATA) VALUES (?, ?, ?, ?)";
-        String OBTENER_RUTA_CLIENTE = "SELECT ruta FROM cliente WHERE id_C = ?";
         
         private void closeConnection() throws SQLException {
 		if (stmt != null) {
@@ -76,6 +86,7 @@ public class DaoImplementacionAsier implements DaoAsier{
 
     @Override
     public void consultarvuelos(Cliente cliente) throws Exception {
+<<<<<<< HEAD
         openConnection();
         try {
             stmt = (PreparedStatement) con.prepareStatement(OBTENER_RUTA_CLIENTE);
@@ -90,6 +101,8 @@ public class DaoImplementacionAsier implements DaoAsier{
             closeConnection();
         }
 
+=======
+>>>>>>> d924dc61e89e8a722a529835786fff56aa246986
         boolean encontrado = false;
 
         try (ObjectInputStream entrada = new ObjectInputStream(
