@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/** Representa a un cliente y, opcionalmente, la ruta a su imagen de perfil. */
 public class Cliente {
 
     private int id_C;
@@ -13,6 +14,7 @@ public class Cliente {
     private String tlf;
     private String ruta;
 
+    /** Crea un cliente sin asignarle una ruta de imagen. */
     public Cliente(int id_C, String nombre_V, String mail, String tlf) {
         this.id_C = id_C;
         this.nombre_V = nombre_V;
@@ -20,6 +22,7 @@ public class Cliente {
         this.tlf = tlf;
     }
 
+    /** Crea un cliente incluyendo la ruta de su imagen. */
     public Cliente(int id_C, String nombre_V, String mail, String tlf, String ruta) {
         this.id_C = id_C;
         this.nombre_V = nombre_V;
@@ -68,6 +71,7 @@ public class Cliente {
         this.ruta = ruta;
     }
 
+    /** Abre la imagen asociada si la ruta apunta a un archivo existente. */
     public void abrirImagen() throws IOException {
         if (ruta == null || ruta.trim().isEmpty()) {
             throw new FileNotFoundException("Ruta de imagen vacía.");

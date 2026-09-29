@@ -8,10 +8,12 @@ package Exception;
  *
  * @author Ricardo.Soza
  */
+/** Indica que un identificador no cumple las reglas de validación. */
 public class IdInvalidoException extends Exception {
 
     private static final long serialVersionUID = 1L;
 
+    /** Crea la excepción con el motivo de la validación fallida. */
     public IdInvalidoException(String mensaje) {
         super(mensaje);
     }

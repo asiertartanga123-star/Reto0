@@ -4,10 +4,7 @@
  */
 package Modelo;
 
-/**
- *
- * @author Asier.Prieto
- */
+/** Categorías disponibles para asignar a un vuelo. */
 public enum Clase {
  ECONOMY,BUSINESS,FIRST   
 }

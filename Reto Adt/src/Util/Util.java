@@ -18,8 +18,10 @@ import java.util.Scanner;
 //import exception.ValidarDniException;
 //import exception.ValidarEmailException;
 
+/** Funciones reutilizables de entrada, conversión y validación de datos. */
 public class Util {
 	// Utilidad para leer cadenas
+	/** Lee el siguiente token escrito por consola y muestra el mensaje indicado. */
 	public static String introducirCadena(String mensaje) {
 		Scanner sc = new Scanner(System.in);
 
@@ -37,6 +39,7 @@ public class Util {
 	}
 
 	// Utilidad para leer un real
+	/** Solicita un número decimal y repite la lectura mientras no sea válido. */
 	public static float leerFloat(String message) {
 		float n = 0;
 		boolean ok;
@@ -55,6 +58,7 @@ public class Util {
 	}
 
 	// Utilidad para leer un entero
+	/** Solicita un entero y repite la lectura mientras no sea válido. */
 	public static int leerInt(String message) {
 		int n = -1;
 		boolean ok;
@@ -73,6 +77,7 @@ public class Util {
 	}
 
 	// Leer un string
+	/** Lee una cadena de hasta la longitud máxima indicada. */
 	public static String leerString(int x, String message) {
 		String cadena = null;
 		boolean ok;
@@ -88,6 +93,7 @@ public class Util {
 	}
 
 	// Leer una respuesta
+	/** Lee una respuesta afirmativa o negativa y la convierte a {@code boolean}. */
 	public static boolean leerRespuesta(String message) {
 		String respu;
 		do {
@@ -102,6 +108,7 @@ public class Util {
 	}
 
 	// leer int entre un rango
+	/** Solicita un entero comprendido entre los límites indicados, ambos incluidos. */
 	public static int leerInt(int x, int y, String message) {
 		int num = 0;
 		boolean ok;
@@ -125,6 +132,7 @@ public class Util {
 	}
 
 	// leer float entre un rango
+	/** Solicita un decimal comprendido entre los límites indicados, ambos incluidos. */
 	public static float leerFloat(float x, float y, String message) {
 		float fNumero = 0;
 		boolean ok;
@@ -146,6 +154,7 @@ public class Util {
 	}
 
 	// leer caracter
+	/** Solicita una cadena de exactamente un carácter. */
 	public static char leerChar(String message) {
 		boolean error = false;
 		String letra;
@@ -163,6 +172,7 @@ public class Util {
 	}
 
 	// Pido fecha
+	/** Solicita una fecha con formato {@code yyyy-MM-dd}. */
 	public static LocalDate pidoFechaDMA(String message) {
 		String fechaS;
 		boolean hay;
@@ -182,6 +192,7 @@ public class Util {
 		return fecha;
 	}
 
+	/** Solicita fecha y hora con formato {@code yyyy-MM-dd HH:mm}. */
 	public static LocalDateTime pidoFechaConHora(String message) {
 		String fechaS;
 		boolean hay;
@@ -200,6 +211,7 @@ public class Util {
 		return fecha;
 	}
 
+	/** Solicita un carácter que pertenezca al conjunto de valores permitido. */
 	public static char leerCharArray(char caracteres[], String message) {
 		int i;
 		boolean error = false;
@@ -229,6 +241,7 @@ public class Util {
 	}
 
 	// Devuelve el n�mero de objetos de un fichero
+	/** Cuenta los objetos serializados que contiene el fichero indicado. */
 	public static int calculoFichero(File fich) {
 		int cont = 0;
 		if (fich.exists()) {
@@ -259,6 +272,7 @@ public class Util {
 		return cont;
 	}
 
+	/** Solicita una dirección de correo y la valida con un patrón básico. */
 	public static String validarEmail(String mensaje) {
 		String PATRON_EMAIL = "^[\\w._%+-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$";
 		String email = null;

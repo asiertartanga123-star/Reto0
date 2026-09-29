@@ -4,10 +4,7 @@
  */
 package Modelo;
 
-/**
- *
- * @author Asier.Prieto
- */
+/** Representa una aerolínea almacenada en la base de datos. */
 public class Aerolinea {
 
     private int id_A;
@@ -15,6 +12,7 @@ public class Aerolinea {
     private String pais;
     private String codigoIATA;
 
+    /** Crea una aerolínea con su identificador y datos de identificación. */
     public Aerolinea(int id_A, String nombre_A, String pais, String codigoIATA) {
         this.id_A = id_A;
         this.nombre_A = nombre_A;

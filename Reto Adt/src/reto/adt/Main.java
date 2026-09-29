@@ -23,8 +23,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Punto de entrada de VOLAREDB y coordinador de las operaciones del menú.
+ * Los clientes y las aerolíneas se gestionan en MySQL; los vuelos se guardan
+ * en el fichero serializado {@code vuelos.dat}.
+ */
 public class Main {
 
+    /** Inicia el menú y procesa opciones hasta que el usuario elige salir. */
     public static void main(String[] args) {
         File fichVuelo = new File("vuelos.dat");
         int opcion;
@@ -39,6 +45,7 @@ public class Main {
         } while (opcion != 0);
     }
 
+    /** Imprime las operaciones disponibles en la consola. */
     private static void mostrarMenu() {
         System.out.println("\n===== VOLAREDB =====");
         System.out.println("1. Registrar aerolínea");
@@ -52,6 +59,7 @@ public class Main {
         System.out.println("0. Salir");
     }
 
+    /** Dirige la opción elegida a la operación correspondiente. */
     private static void ejecutar(int opcion, File fichVuelo) throws Exception {
         switch (opcion) {
             case 1:
@@ -85,6 +93,7 @@ public class Main {
         }
     }
 
+    /** Solicita los datos de una aerolínea y los inserta en MySQL. */
     private static void registrarAerolinea() throws Exception {
         System.out.println("--- Registrar aerolínea ---");
         int id = Util.leerInt("Id: ");
@@ -99,6 +108,7 @@ public class Main {
         System.out.println("Aerolínea registrada correctamente.");
     }
 
+    /** Valida y registra un cliente en la base de datos. */
     private static void registrarCliente() {
         DaoImplementacion dao = new DaoImplementacion();
 
@@ -120,6 +130,7 @@ public class Main {
         }
     }
 
+    /** Repite la solicitud hasta obtener un ID no negativo y no utilizado. */
     private static int pedirIdValido(DaoImplementacion dao) {
         int id = -1;
         boolean idOk = false;
@@ -144,6 +155,7 @@ public class Main {
         return id;
     }
 
+    /** Crea vuelos y los añade al fichero serializado sin duplicar sus IDs. */
     private static void registrarVuelo(File fichVuelo) {
         int id;
         ObjectOutputStream oos = null;
@@ -214,6 +226,7 @@ public class Main {
         }
     }
 
+    /** Añade el ID del cliente a la lista de reservas del vuelo elegido. */
     private static void reservarVuelo(File fichVuelo) throws SQLException {
         Vuelo v;
         int idCliente = Util.leerInt("Introduce el id del cliente");
@@ -235,6 +248,7 @@ public class Main {
         System.out.println("Reserva añadida correctamente");
     }
 
+    /** Comprueba si existe la aerolínea indicada en la base de datos. */
     private static boolean listarIdsAerolinea(int idAerolinea) throws SQLException {
         Dao dao = new DaoImplementacion();
         List<Integer> ids = dao.listarIdsAerolinea();
@@ -249,6 +263,7 @@ public class Main {
         return false;
     }
 
+    /** Comprueba si existe el cliente indicado en la base de datos. */
     private static boolean listarIdsClientes(int idCliente) throws SQLException {
         Dao dao = new DaoImplementacion();
         List<Integer> ids = dao.listarIdsClientes();
@@ -263,6 +278,7 @@ public class Main {
         return false;
     }
 
+    /** Muestra los vuelos cuya fecha de salida es posterior a la fecha actual. */
     private static void consultarVuelosFuturos(File fichVuelo) {
         if (!fichVuelo.exists()) {
             System.out.println("No hay vuelos registrados.");
@@ -298,6 +314,7 @@ public class Main {
         }
     }
 
+    /** Solicita un cliente y muestra los vuelos que tiene reservados. */
     private static void consultarVuelosDeUsuario() throws Exception {
         int idCliente = Util.leerInt("Introduce el id del cliente: ");
         Cliente cliente = new Cliente(idCliente, "", "", "", "");
@@ -305,6 +322,7 @@ public class Main {
         dao.consultarvuelos(cliente);
     }
 
+    /** Muestra las reservas del cliente cuya fecha de salida ya ha pasado. */
     private static void historialCliente() {
         int idCliente = Util.leerInt("Introduce el id del cliente: ");
         DaoImplementacion dao = new DaoImplementacion();
@@ -324,6 +342,7 @@ public class Main {
         }
     }
 
+    /** Busca y devuelve el vuelo con el ID indicado, o {@code null} si no existe. */
     private static Vuelo obtenerVuelo(File fichVuelo, int id) {
         ObjectInputStream ois = null;
         Vuelo vue;
@@ -354,6 +373,7 @@ public class Main {
         return null;
     }
 
+    /** Imprime todos los vuelos almacenados y el número total encontrado. */
     private static void listarVuelo(File fichVuelo) {
         if (!fichVuelo.exists()) {
             System.out.println("No hay vuelos registrados todavía.");
@@ -394,6 +414,7 @@ public class Main {
         }
     }
 
+    /** Reescribe el fichero sustituyendo el vuelo con el mismo ID. */
     private static void actualizarVueloEnFichero(File fichVuelo, Vuelo vueloActualizado) {
         ArrayList<Vuelo> vuelos = new ArrayList<>();
         ObjectInputStream ois = null;

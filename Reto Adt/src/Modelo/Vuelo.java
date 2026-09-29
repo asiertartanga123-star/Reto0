@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/** Vuelo serializable, con sus datos y los IDs de clientes que lo han reservado. */
 public class Vuelo implements Serializable {
 
+    // Mantiene la compatibilidad con los vuelos guardados por versiones anteriores.
     private static final long serialVersionUID = -1381670417836086862L;
 
     private int id;
@@ -18,11 +20,13 @@ public class Vuelo implements Serializable {
     private int id_A;
     private ArrayList<Integer> idReservados;
 
+    /** Crea un vuelo sin reservas ni cliente asociado directamente. */
     public Vuelo(int id, String origen, String destino, LocalDate fechaSalida,
             int num_plazas, Clase clase, int id_A) {
         this(id, 0, origen, destino, fechaSalida, num_plazas, clase, id_A, new ArrayList<>());
     }
 
+    /** Crea un vuelo restaurando también sus reservas y el cliente asociado. */
     public Vuelo(int id, int id_C, String origen, String destino, LocalDate fechaSalida,
             int num_plazas, Clase clase, int id_A, ArrayList<Integer> idReservados) {
         this.id = id;
@@ -36,6 +40,7 @@ public class Vuelo implements Serializable {
         this.idReservados = idReservados == null ? new ArrayList<>() : idReservados;
     }
 
+    /** Devuelve las reservas e inicializa la lista si el flujo antiguo era nulo. */
     public ArrayList<Integer> getIdReservados() {
         if (idReservados == null) {
             idReservados = new ArrayList<>();

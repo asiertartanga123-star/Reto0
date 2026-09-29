@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+/** Implementa el acceso a MySQL y las consultas de vuelos del fichero local. */
 public class DaoImplementacion implements Dao {
 
     private static final String URL = "jdbc:mysql://localhost:3306/volaredb?serverTimezone=Europe/Madrid&useSSL=false";
@@ -39,22 +40,27 @@ public class DaoImplementacion implements Dao {
     private static final String OBTENER_AEROLINEA = "SELECT id_A, nombre_A, pais, codigoIATA FROM AEROLINEA WHERE id_A = ?";
     private static final String OBTENER_RUTA_CLIENTE = "SELECT ruta FROM cliente WHERE id_C = ?";
 
+    /** Usa el fichero de vuelos {@code vuelos.dat} del directorio de ejecución. */
     public DaoImplementacion() {
         this(new File("vuelos.dat"));
     }
 
+    /** Permite indicar el fichero de vuelos, útil también para pruebas. */
     public DaoImplementacion(File ficheroVuelos) {
         this.ficheroVuelos = ficheroVuelos;
     }
 
+    /** Crea una instancia del DAO con la configuración predeterminada. */
     public static DaoImplementacion getInstance() {
         return new DaoImplementacion();
     }
 
+    /** Abre la conexión JDBC configurada para la base de datos volaredb. */
     private void openConnection() throws SQLException {
         con = (Connection) DriverManager.getConnection(URL, USER, PASS);
     }
 
+    /** Cierra y limpia los recursos JDBC almacenados en esta instancia. */
     private void closeConnection() throws SQLException {
         if (stmt != null) {
             stmt.close();
@@ -66,6 +72,7 @@ public class DaoImplementacion implements Dao {
         con = null;
     }
 
+    /** Inserta el cliente y sus datos asociados en la tabla CLIENTE. */
     @Override
     public boolean registrarCliente(Cliente clien) throws SQLException {
         openConnection();
@@ -85,6 +92,7 @@ public class DaoImplementacion implements Dao {
         return insertado;
     }
 
+    /** Comprueba mediante su clave primaria si existe un cliente. */
     @Override
     public boolean existeCliente(int id) throws SQLException {
         openConnection();
@@ -99,6 +107,7 @@ public class DaoImplementacion implements Dao {
         }
     }
 
+    /** Recupera los IDs de cliente para validar reservas y altas. */
     @Override
     public List<Integer> listarIdsClientes() throws SQLException {
         List<Integer> ids = new ArrayList<>();
@@ -116,6 +125,7 @@ public class DaoImplementacion implements Dao {
         return ids;
     }
 
+    /** Inserta una aerolínea en la tabla AEROLINEA. */
     @Override
     public void registrarAerolinea(Aerolinea aerolinea) throws SQLException {
         openConnection();
@@ -131,6 +141,7 @@ public class DaoImplementacion implements Dao {
         }
     }
 
+    /** Recupera los IDs de aerolínea disponibles. */
     @Override
     public List<Integer> listarIdsAerolinea() throws SQLException {
         List<Integer> ids = new ArrayList<>();
@@ -148,6 +159,7 @@ public class DaoImplementacion implements Dao {
         return ids;
     }
 
+    /** Busca una aerolínea por ID y devuelve {@code null} si no existe. */
     public Aerolinea obtenerAerolinea(int id) throws SQLException {
         Aerolinea aero = null;
         openConnection();
@@ -165,6 +177,7 @@ public class DaoImplementacion implements Dao {
         return aero;
     }
 
+    /** Muestra los vuelos reservados por el cliente e intenta abrir su imagen. */
     public void consultarvuelos(Cliente cliente) throws Exception {
         openConnection();
         try {
@@ -214,6 +227,7 @@ public class DaoImplementacion implements Dao {
         }
     }
 
+    /** Devuelve los vuelos reservados del cliente que ya han salido. */
     public List<Vuelo> verHistorialVuelos(int idCliente) throws ClienteNoEncontradoException, SQLException, IOException {
         if (!existeCliente(idCliente)) {
             throw new ClienteNoEncontradoException(idCliente);
@@ -221,6 +235,7 @@ public class DaoImplementacion implements Dao {
         return leerHistorial(idCliente, LocalDate.now());
     }
 
+    /** Lee el historial usando una fecha explícita para facilitar pruebas. */
     List<Vuelo> leerHistorial(int idCliente, LocalDate hoy) throws IOException {
         List<Vuelo> historial = new ArrayList<>();
 

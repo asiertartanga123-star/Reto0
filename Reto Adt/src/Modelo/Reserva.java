@@ -2,6 +2,7 @@ package Modelo;
 
 import java.io.Serializable;
 
+/** Representa la relación entre un cliente y un vuelo reservado. */
 public class Reserva implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -9,6 +10,7 @@ public class Reserva implements Serializable {
     private int id_C;
     private int id_V;
 
+    /** Crea una reserva para el cliente y el vuelo indicados. */
     public Reserva(int id_C, int id_V) {
         this.id_C = id_C;
         this.id_V = id_V;
