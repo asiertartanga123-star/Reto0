@@ -14,7 +14,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.ObjectInputStream;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 /**
  *
@@ -29,6 +28,7 @@ public class DaoImplementacionAsier implements DaoAsier{
     public static DaoImplementacionAsier getInstance() {
         return INSTANCE;
     }
+
    
     /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -39,9 +39,9 @@ public class DaoImplementacionAsier implements DaoAsier{
 	private PreparedStatement stmt;
         
         private void openConnection() throws SQLException {
-        con = (Connection) DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/volaredb?serverTimezone=Europe/Madrid&useSSL=false", "root",
-                "abcd*1234");
+            con = (Connection) DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/volareDB?serverTimezone=Europe/Madrid&useSSL=false", "root",
+                    "abcd*1234");
 	}
         
         // Sentencias
@@ -55,18 +55,23 @@ public class DaoImplementacionAsier implements DaoAsier{
 		}
 		if (con != null)
 			con.close();
+        stmt = null;
+        con = null;
 	}
         
         
         public void registrarAerolinea(Aerolinea aerolinea) throws SQLException{
-              openConnection();
-            stmt = (PreparedStatement) con.prepareStatement(REGISTRAR_AEROLINEA);
-            stmt.setInt(1, aerolinea.getId_A());
-            stmt.setString(2, aerolinea.getNombre_A());
-            stmt.setString(3, aerolinea.getPais());
-            stmt.setString(4, aerolinea.getCodigoIATA());
-            stmt.executeUpdate();
-            
+            openConnection();
+            try {
+                stmt = (PreparedStatement) con.prepareStatement(REGISTRAR_AEROLINEA);
+                stmt.setInt(1, aerolinea.getId_A());
+                stmt.setString(2, aerolinea.getNombre_A());
+                stmt.setString(3, aerolinea.getPais());
+                stmt.setString(4, aerolinea.getCodigoIATA());
+                stmt.executeUpdate();
+            } finally {
+                closeConnection();
+            }
         }
 
     @Override
@@ -75,7 +80,7 @@ public class DaoImplementacionAsier implements DaoAsier{
         try {
             stmt = (PreparedStatement) con.prepareStatement(OBTENER_RUTA_CLIENTE);
             stmt.setInt(1, cliente.getId_C());
-            try (ResultSet resultado = stmt.executeQuery()) {
+            try (java.sql.ResultSet resultado = stmt.executeQuery()) {
                 if (!resultado.next()) {
                     throw new SQLException("No existe el cliente con id " + cliente.getId_C());
                 }
@@ -84,8 +89,6 @@ public class DaoImplementacionAsier implements DaoAsier{
         } finally {
             closeConnection();
         }
-
-        cliente.abrirImagen();
 
         boolean encontrado = false;
 
@@ -108,6 +111,8 @@ public class DaoImplementacionAsier implements DaoAsier{
         if (!encontrado) {
             System.out.println("El cliente no tiene vuelos registrados.");
         }
+
+        cliente.abrirImagen();
     }
 
   
