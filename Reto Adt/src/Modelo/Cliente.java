@@ -4,6 +4,11 @@
  */
 package Modelo;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 /**
  *
  * @author Asier.Prieto
@@ -54,6 +59,22 @@ public class Cliente {
 
     public void setRuta(String ruta) {
         this.ruta = ruta;
+    }
+
+    public void abrirImagen() throws IOException {
+        if (ruta == null || ruta.trim().isEmpty()) {
+            throw new FileNotFoundException("Ruta de imagen vacía.");
+        }
+
+        File imagen = new File(ruta);
+        if (!imagen.isFile()) {
+            imagen = new File("Reto Adt", ruta);
+        }
+        if (!imagen.isFile()) {
+            throw new FileNotFoundException(ruta);
+        }
+
+        Desktop.getDesktop().open(imagen);
     }
 
     public Cliente(int id_C, String nombre_V, String mail, String tlf, String ruta) {

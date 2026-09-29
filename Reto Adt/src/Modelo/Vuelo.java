@@ -4,23 +4,26 @@
  */
 package Modelo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  *
  * @author Asier.Prieto
  */
-public class Vuelo {
+public class Vuelo implements Serializable {
     
     private int id;
+    private int id_C;
     private String origen;
     private String destino;
     private LocalDate fechaSalida;
     private int num_plazas;
     private Clase clase;
 
-    public Vuelo(int id, String origen, String destino, LocalDate fechaSalida, int num_plazas, Clase clase) {
+    public Vuelo(int id, int id_C, String origen, String destino, LocalDate fechaSalida, int num_plazas, Clase clase) {
         this.id = id;
+        this.id_C = id_C;
         this.origen = origen;
         this.destino = destino;
         this.fechaSalida = fechaSalida;
@@ -34,6 +37,14 @@ public class Vuelo {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getId_C() {
+        return id_C;
+    }
+
+    public void setId_C(int id_C) {
+        this.id_C = id_C;
     }
 
     public String getOrigen() {
@@ -78,7 +89,7 @@ public class Vuelo {
 
     @Override
     public String toString() {
-        return "Vuelo{" + "id=" + id + ", origen=" + origen + ", destino=" + destino + ", fechaSalida=" + fechaSalida + ", num_plazas=" + num_plazas + ", clase=" + clase + '}';
+        return "Vuelo{" + "id=" + id + ", id_C=" + id_C + ", origen=" + origen + ", destino=" + destino + ", fechaSalida=" + fechaSalida + ", num_plazas=" + num_plazas + ", clase=" + clase + '}';
     }
     
     

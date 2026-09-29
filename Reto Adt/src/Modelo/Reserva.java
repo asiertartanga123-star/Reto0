@@ -4,11 +4,13 @@
  */
 package Modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Asier.Prieto
  */
-public class Reserva {
+public class Reserva implements Serializable {
     private int id_C;
     private int id_V;
 
