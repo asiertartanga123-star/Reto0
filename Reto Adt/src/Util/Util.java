@@ -1,6 +1,10 @@
 package Util;
+<<<<<<< HEAD
 import exception.ValidarDniException;
 import exception.ValidarEmailException;
+=======
+import Exceptions.ValidarEmailException;
+>>>>>>> Ekain
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -278,7 +282,11 @@ public class Util {
 		return email;
 	}
 
+<<<<<<< HEAD
 	public static String validarDni(String mensaje) throws ValidarDniException {
+=======
+	/*public static String validarDni(String mensaje) throws ValidarDniException {
+>>>>>>> Ekain
 		String dni, numeroStr;
 		char letra, letraCalculada;
 		int numero;
@@ -306,5 +314,9 @@ public class Util {
 				'L', 'C', 'K', 'E', 'T' };
 		int indice = numero % 23;
 		return letras[indice];
+<<<<<<< HEAD
 	}
+=======
+	}*/
+>>>>>>> Ekain
 }
