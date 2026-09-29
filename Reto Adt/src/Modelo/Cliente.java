@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Modelo;
 
 import java.awt.Desktop;
@@ -9,12 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-/**
- *
- * @author Asier.Prieto
- */
 public class Cliente {
-    
+
     private int id_C;
     private String nombre_V;
     private String mail;
@@ -27,10 +19,15 @@ public class Cliente {
         this.mail = mail;
         this.tlf = tlf;
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> Ricardo
+    public Cliente(int id_C, String nombre_V, String mail, String tlf, String ruta) {
+        this.id_C = id_C;
+        this.nombre_V = nombre_V;
+        this.mail = mail;
+        this.tlf = tlf;
+        this.ruta = ruta;
+    }
+
     public int getId_C() {
         return id_C;
     }
@@ -43,7 +40,7 @@ public class Cliente {
         return nombre_V;
     }
 
-    public void setNombre_V (String nombre_V) {
+    public void setNombre_V(String nombre_V) {
         this.nombre_V = nombre_V;
     }
 
@@ -87,19 +84,9 @@ public class Cliente {
         Desktop.getDesktop().open(imagen);
     }
 
-    public Cliente(int id_C, String nombre_V, String mail, String tlf, String ruta) {
-        this.id_C = id_C;
-        this.nombre_V = nombre_V;
-        this.mail = mail;
-        this.tlf = tlf;
-        this.ruta = ruta;
-    }
-
     @Override
     public String toString() {
         return "Cliente{" + "id=" + id_C + ", nombre=" + nombre_V + ", mail=" + mail + ", tlf=" + tlf + ", ruta=" + ruta + '}';
     }
-    
-    
-    
 }
+

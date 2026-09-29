@@ -1,25 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Modelo;
 
-<<<<<<< HEAD
 import java.io.Serializable;
-=======
 
->>>>>>> Ricardo
-
-/**
- *
- * @author Asier.Prieto
- */
-<<<<<<< HEAD
 public class Reserva implements Serializable {
-=======
-public class Reserva  {
-   
->>>>>>> Ricardo
+
+    private static final long serialVersionUID = 1L;
+
     private int id_C;
     private int id_V;
 
@@ -48,6 +34,5 @@ public class Reserva  {
     public String toString() {
         return "Reserva{" + "id_C=" + id_C + ", id_V=" + id_V + '}';
     }
-    
-    
 }
+

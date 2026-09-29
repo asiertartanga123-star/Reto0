@@ -23,12 +23,14 @@ VALUES (2, 'Air Europa', 'España', 'UX');
 
 -- Inserts para cliente
 INSERT INTO cliente (id_C, nombre_C, email, telefono, ruta)
-VALUES (1, 'Asier Tartanga', 'asier@example.com', '600123456', 'Bilbao-Madrid');
+VALUES (1, 'Asier Tartanga', 'asier@example.com', '600123456', 'src/Imagenes/descarga.jpg');
 
 INSERT INTO cliente (id_C, nombre_C, email, telefono, ruta)
-VALUES (2, 'Maria Lopez', 'maria@example.com', '600654321', 'Madrid-Barcelona');
-<<<<<<< HEAD
-=======
+VALUES (2, 'Maria Lopez', 'maria@example.com', '600654321', 'src/Imagenes/descarga (1).jpg');
+
+-- Actualiza también los clientes si ya existían en la base de datos.
+UPDATE cliente SET ruta = 'src/Imagenes/descarga.jpg' WHERE id_C = 1;
+UPDATE cliente SET ruta = 'src/Imagenes/descarga (1).jpg' WHERE id_C = 2;
 
 DELIMITER //
 
@@ -37,4 +39,3 @@ BEGIN
 INSERT INTO AEROLINEA (id_A, nombre_A, pais, codigoIATA) 
 VALUE (P_ID_A , P_NOMBRE_A , P_PAIS , P_CODIGOIATA);
 END //
->>>>>>> Ricardo

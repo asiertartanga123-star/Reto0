@@ -13,7 +13,7 @@ import java.sql.SQLException;
  *
  * @author Ricardo.Soza
  */
-public interface DaoRicardo {
+public interface Dao {
         // Cliente(BD)
     
     public boolean registrarCliente(Cliente clien) throws SQLException;

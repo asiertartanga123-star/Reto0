@@ -4,23 +4,10 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-<<<<<<< HEAD
-/**
- *
- * @author Asier.Prieto
- */
-public class Vuelo implements Serializable {
-<<<<<<< HEAD
-    
-=======
 public class Vuelo implements Serializable {
 
->>>>>>> Ekain
-=======
+    private static final long serialVersionUID = -1381670417836086862L;
 
-    private static final long serialVersionUID = 1L;
-
->>>>>>> Ricardo
     private int id;
     private int id_C;
     private String origen;
@@ -29,22 +16,15 @@ public class Vuelo implements Serializable {
     private int num_plazas;
     private Clase clase;
     private int id_A;
-<<<<<<< HEAD
-    public int getId_c;
-
-<<<<<<< HEAD
-    public Vuelo(int id, int id_C, String origen, String destino, LocalDate fechaSalida, int num_plazas, Clase clase) {
-=======
-    public Vuelo(int id, String origen, String destino, LocalDate fechaSalida,
-                 int num_plazas, Clase clase, int id_A) {
->>>>>>> Ekain
-=======
     private ArrayList<Integer> idReservados;
 
     public Vuelo(int id, String origen, String destino, LocalDate fechaSalida,
-            int num_plazas, Clase clase, int id_A,
-            ArrayList<Integer> idReservados) {
->>>>>>> Ricardo
+            int num_plazas, Clase clase, int id_A) {
+        this(id, 0, origen, destino, fechaSalida, num_plazas, clase, id_A, new ArrayList<>());
+    }
+
+    public Vuelo(int id, int id_C, String origen, String destino, LocalDate fechaSalida,
+            int num_plazas, Clase clase, int id_A, ArrayList<Integer> idReservados) {
         this.id = id;
         this.id_C = id_C;
         this.origen = origen;
@@ -53,27 +33,7 @@ public class Vuelo implements Serializable {
         this.num_plazas = num_plazas;
         this.clase = clase;
         this.id_A = id_A;
-<<<<<<< HEAD
-=======
-        this.idReservados = new ArrayList<>();
-    }
-
-    public Vuelo(int id, String origen, String destino, LocalDate fechaSalida, int num_plazas, Clase clase, int id_A) {
-        this.id = id;
-        this.origen = origen;
-        this.destino = destino;
-        this.fechaSalida = fechaSalida;
-        this.num_plazas = num_plazas;
-        this.clase = clase;
-        this.id_A = id_A;
-    }
-
-    public int getId_A() {
-        return id_A;
-    }
-
-    public void setId_A(int id_A) {
-        this.id_A = id_A;
+        this.idReservados = idReservados == null ? new ArrayList<>() : idReservados;
     }
 
     public ArrayList<Integer> getIdReservados() {
@@ -85,7 +45,6 @@ public class Vuelo implements Serializable {
 
     public void setIdReservados(ArrayList<Integer> idReservados) {
         this.idReservados = idReservados;
->>>>>>> Ricardo
     }
 
     public int getId() {
@@ -144,7 +103,6 @@ public class Vuelo implements Serializable {
         this.clase = clase;
     }
 
-<<<<<<< HEAD
     public int getId_A() {
         return id_A;
     }
@@ -155,29 +113,9 @@ public class Vuelo implements Serializable {
 
     @Override
     public String toString() {
-<<<<<<< HEAD
-        return "Vuelo{" + "id=" + id + ", id_C=" + id_C + ", origen=" + origen + ", destino=" + destino + ", fechaSalida=" + fechaSalida + ", num_plazas=" + num_plazas + ", clase=" + clase + '}';
-=======
         return "Vuelo{" + "id=" + id + ", origen=" + origen + ", destino=" + destino
                 + ", fechaSalida=" + fechaSalida + ", num_plazas=" + num_plazas
-                + ", clase=" + clase + ", id_A=" + id_A + '}';
->>>>>>> Ekain
+                + ", clase=" + clase + ", id_A=" + id_A + ", idReservados=" + idReservados + '}';
     }
 }
-=======
-    /*
-    public void setDatos(int id,Clase c) {
-		this.id = id;
-		this.origen = Util.introducirCadena("Nombre: ");
-		this.destino = Util.introducirCadena("Apellido: ");
-		this.fechaSalida = Util.pidoFechaDMA("Fecha de salida: ");
-		this.num_plazas = Util.leerInt("Número de plazas: ");
-		this.clase = c;
-	}
-     */
-    @Override
-    public String toString() {
-        return "Vuelo{" + "id=" + id + ", origen=" + origen + ", destino=" + destino + ", fechaSalida=" + fechaSalida + ", num_plazas=" + num_plazas + ", clase=" + clase + ", id_A=" + id_A + ", idReservados=" + idReservados + '}';
-    }
-}
->>>>>>> Ricardo
+

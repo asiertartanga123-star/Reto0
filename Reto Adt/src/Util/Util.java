@@ -1,15 +1,7 @@
 package Util;
-<<<<<<< HEAD
-<<<<<<< HEAD
-import exception.ValidarDniException;
-import exception.ValidarEmailException;
-=======
-import Exceptions.ValidarEmailException;
->>>>>>> Ekain
-=======
+
 import Exception.ValidarDniException;
 import Exception.ValidarEmailException;
->>>>>>> Ricardo
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
@@ -287,15 +279,46 @@ public class Util {
 		return email;
 	}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-	public static String validarDni(String mensaje) throws ValidarDniException {
-=======
 	/*public static String validarDni(String mensaje) throws ValidarDniException {
->>>>>>> Ekain
+
 =======
 	public static String validarDni(String mensaje) throws ValidarDniException {
->>>>>>> Ricardo
+
+		String dni, numeroStr;
+		char letra, letraCalculada;
+		int numero;
+
+		dni = Util.introducirCadena("Introduce el dni:");
+
+		if (!dni.matches("^[0-9]{8}[A-Z]$")) {
+			throw new ValidarDniException("Error: El DNI debe tener 8 dígitos seguidos de una letra.");
+		}
+
+		numeroStr = dni.substring(0, 8);
+		letra = dni.charAt(8);
+		numero = Integer.parseInt(numeroStr);
+		letraCalculada = calcularLetraDni(numero);
+
+		if (letra != letraCalculada) {
+			throw new ValidarDniException("Error: La letra del DNI no es correcta.");
+		}
+
+		return dni;
+	}
+
+	private static char calcularLetraDni(int numero) {
+		char[] letras = { 'T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H',
+				'L', 'C', 'K', 'E', 'T' };
+		int indice = numero % 23;
+		return letras[indice];
+	}
+=======
+	}*/
+	/*public static String validarDni(String mensaje) throws ValidarDniException {
+
+=======
+	public static String validarDni(String mensaje) throws ValidarDniException {
+
 		String dni, numeroStr;
 		char letra, letraCalculada;
 		int numero;
@@ -328,8 +351,7 @@ public class Util {
 	}
 =======
 	}*/
->>>>>>> Ekain
-=======
-	}
->>>>>>> Ricardo
-}
+
+	
+
+} 
