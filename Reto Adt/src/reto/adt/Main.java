@@ -19,7 +19,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.sql.SQLException;
 import java.time.LocalDate;
-
+import Exceptions.TelefonoInvalidoException;
 public class Main {
 
     public static void main(String[] args) {
@@ -99,6 +99,28 @@ public class Main {
 
         return id;
     }
+    
+        private static String pedirTelefonoValido() {
+        String tlf = "";
+        boolean tlfOk = false;
+
+        do {
+            try {
+                tlf = Util.introducirCadena("Introduce el numero de telefono: ");
+
+                if (!tlf.matches("\\d{9}")) {
+                    throw new TelefonoInvalidoException("El teléfono debe tener 9 dígitos numéricos.");
+                }
+
+                tlfOk = true;
+
+            } catch (TelefonoInvalidoException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (!tlfOk);
+
+        return tlf;
+    }
 
     private static void registrarAerolinea() {
         DaoImplementacionEkain dao = new DaoImplementacionEkain();
@@ -140,7 +162,7 @@ public class Main {
         int id = pedirIdValido(dao);
         String nombre = Util.introducirCadena("Introduce el nombre: ");
         String email = Util.validarEmail("Introduce el email: ");
-        String tlf = Util.introducirCadena("Introduce el numero de telefono: ");
+        String tlf = pedirTelefonoValido();
 
         Cliente cliente = new Cliente(id, nombre, email, tlf);
 
