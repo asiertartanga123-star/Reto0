@@ -4,10 +4,6 @@
  */
 package Modelo;
 
-import java.awt.Desktop;
-import java.io.File;
-import java.io.IOException;
-
 /**
  *
  * @author Asier.Prieto
@@ -58,10 +54,6 @@ public class Cliente {
 
     public void setRuta(String ruta) {
         this.ruta = ruta;
-    }
-
-    public void abrirImagen() throws IOException {
-        Desktop.getDesktop().open(new File(ruta));
     }
 
     public Cliente(int id_C, String nombre_V, String mail, String tlf, String ruta) {
