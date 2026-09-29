@@ -4,11 +4,14 @@
  */
 package Modelo;
 
+
+
 /**
  *
  * @author Asier.Prieto
  */
-public class Reserva {
+public class Reserva  {
+   
     private int id_C;
     private int id_V;
 

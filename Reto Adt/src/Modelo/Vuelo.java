@@ -6,28 +6,65 @@ package Modelo;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  *
  * @author Asier.Prieto
  */
-public class Vuelo implements Serializable{
+public class Vuelo implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
+
     private int id;
     private String origen;
     private String destino;
     private LocalDate fechaSalida;
     private int num_plazas;
     private Clase clase;
+    private int id_A;
+    private ArrayList<Integer> idReservados;
 
-    public Vuelo(int id, String origen, String destino, LocalDate fechaSalida, int num_plazas, Clase clase) {
+    public Vuelo(int id, String origen, String destino, LocalDate fechaSalida,
+            int num_plazas, Clase clase, int id_A,
+            ArrayList<Integer> idReservados) {
         this.id = id;
         this.origen = origen;
         this.destino = destino;
         this.fechaSalida = fechaSalida;
         this.num_plazas = num_plazas;
         this.clase = clase;
+        this.id_A = id_A;
+        this.idReservados = new ArrayList<>();
+    }
+
+    public Vuelo(int id, String origen, String destino, LocalDate fechaSalida, int num_plazas, Clase clase, int id_A) {
+        this.id = id;
+        this.origen = origen;
+        this.destino = destino;
+        this.fechaSalida = fechaSalida;
+        this.num_plazas = num_plazas;
+        this.clase = clase;
+        this.id_A = id_A;
+    }
+
+    public int getId_A() {
+        return id_A;
+    }
+
+    public void setId_A(int id_A) {
+        this.id_A = id_A;
+    }
+
+    public ArrayList<Integer> getIdReservados() {
+        if (idReservados == null) {
+            idReservados = new ArrayList<>();
+        }
+        return idReservados;
+    }
+
+    public void setIdReservados(ArrayList<Integer> idReservados) {
+        this.idReservados = idReservados;
     }
 
     public int getId() {
@@ -78,13 +115,6 @@ public class Vuelo implements Serializable{
         this.clase = clase;
     }
 
-    @Override
-    public String toString() {
-        return "Vuelo{" + "id=" + id + ", origen=" + origen + ", destino=" + destino + ", fechaSalida=" + fechaSalida + ", num_plazas=" + num_plazas + ", clase=" + clase + '}';
-    }
-    
-    
-    
     /*
     public void setDatos(int id,Clase c) {
 		this.id = id;
@@ -94,6 +124,9 @@ public class Vuelo implements Serializable{
 		this.num_plazas = Util.leerInt("Número de plazas: ");
 		this.clase = c;
 	}
-*/
-    
+     */
+    @Override
+    public String toString() {
+        return "Vuelo{" + "id=" + id + ", origen=" + origen + ", destino=" + destino + ", fechaSalida=" + fechaSalida + ", num_plazas=" + num_plazas + ", clase=" + clase + ", id_A=" + id_A + ", idReservados=" + idReservados + '}';
+    }
 }
