@@ -4,14 +4,11 @@
  */
 package Modelo;
 
-<<<<<<< HEAD
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-=======
->>>>>>> d924dc61e89e8a722a529835786fff56aa246986
 /**
  *
  * @author Asier.Prieto
@@ -64,28 +61,22 @@ public class Cliente {
         this.ruta = ruta;
     }
 
-<<<<<<< HEAD
     public void abrirImagen() throws IOException {
         if (ruta == null || ruta.trim().isEmpty()) {
-            throw new FileNotFoundException("El cliente no tiene una ruta de imagen configurada.");
+            throw new FileNotFoundException("Ruta de imagen vacía.");
         }
 
         File imagen = new File(ruta);
-        if (!imagen.isFile() && !imagen.isAbsolute()) {
+        if (!imagen.isFile()) {
             imagen = new File("Reto Adt", ruta);
         }
         if (!imagen.isFile()) {
-            throw new FileNotFoundException("No existe la imagen del cliente: " + ruta);
-        }
-        if (!Desktop.isDesktopSupported()) {
-            throw new IOException("No se puede abrir la imagen en este entorno.");
+            throw new FileNotFoundException(ruta);
         }
 
         Desktop.getDesktop().open(imagen);
     }
 
-=======
->>>>>>> d924dc61e89e8a722a529835786fff56aa246986
     public Cliente(int id_C, String nombre_V, String mail, String tlf, String ruta) {
         this.id_C = id_C;
         this.nombre_V = nombre_V;
