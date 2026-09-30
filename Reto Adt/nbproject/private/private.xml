@@ -2,6 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/C:/Users/Asier.Prieto/Desktop/Reto%20adt/Reto%20Adt/src/reto/adt/RetoAdt.java</file>
             <file>file:/C:/Users/Asier.Prieto/Desktop/Reto%20adt/Reto%20Adt/src/Modelo/Cliente.java</file>
@@ -11,5 +12,18 @@
             <file>file:/C:/Users/Asier.Prieto/Desktop/Reto%20adt/Reto%20Adt/src/Modelo/Vuelo.java</file>
             <file>file:/C:/Users/Asier.Prieto/Desktop/Reto%20adt/Reto%20Adt/src/Controlador/Principal.java</file>
         </group>
+=======
+<<<<<<< HEAD
+        <group/>
+=======
+        <group>
+            <file>file:/C:/Users/Ricardo.Soza/Desktop/RetoAdtD/Reto%20Adt/src/reto/adt/Main.java</file>
+            <file>file:/C:/Users/Ricardo.Soza/Desktop/RetoAdtD/Reto%20Adt/src/Controlador/DaoImplementacion.java</file>
+            <file>file:/C:/Users/Ricardo.Soza/Desktop/RetoAdtD/Reto%20Adt/src/Controlador/DaoRicardo.java</file>
+            <file>file:/C:/Users/Ricardo.Soza/Desktop/RetoAdtD/Reto%20Adt/src/Modelo/Vuelo.java</file>
+            <file>file:/C:/Users/Ricardo.Soza/Desktop/RetoAdtD/Reto%20Adt/src/Modelo/Reserva.java</file>
+        </group>
+>>>>>>> Ricardo
+>>>>>>> 9c76414d5da9e61fb521573f3393c9d3ab7ce0ba
     </open-files>
 </project-private>

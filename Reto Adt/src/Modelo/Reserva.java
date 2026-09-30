@@ -1,17 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Modelo;
 
-/**
- *
- * @author Asier.Prieto
- */
-public class Reserva {
+import java.io.Serializable;
+
+/** Representa la relación entre un cliente y un vuelo reservado. */
+public class Reserva implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private int id_C;
     private int id_V;
 
+    /** Crea una reserva para el cliente y el vuelo indicados. */
     public Reserva(int id_C, int id_V) {
         this.id_C = id_C;
         this.id_V = id_V;
@@ -37,6 +36,5 @@ public class Reserva {
     public String toString() {
         return "Reserva{" + "id_C=" + id_C + ", id_V=" + id_V + '}';
     }
-    
-    
 }
+
